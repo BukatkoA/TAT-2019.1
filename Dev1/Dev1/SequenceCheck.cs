@@ -5,16 +5,18 @@ namespace Dev1
 {
     class SequenceCheck
     {
-<<<<<<< HEAD
-        StringBuilder workingString;
-=======
         private StringBuilder workingString;
+
+        /// <summary>
+        /// SequenceCheck constructor checks for the correctness of the entered string.
+        /// </summary>
+        /// <param name="temporaryString"></param>
 
         public SequenceCheck(StringBuilder temporaryString)
         {
             if (workingString.Length < 2)
             {
-                throw new FormatException("String's length less than 2");
+                throw new FormatException("String's length less than two symbols");
             }
             else
             {
@@ -22,7 +24,6 @@ namespace Dev1
             }
 
         }
->>>>>>> Error correction
 
         /// <summary>
         /// The constructor creates a string from an array of strings.

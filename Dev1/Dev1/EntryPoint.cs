@@ -3,6 +3,7 @@
 namespace Dev1
 {
     /// <summary>
+    /// Class EntryPoint which realized SearchMethod.
     /// <param name="args">Arguments from command line</param>
     /// </summary>
     class EntryPoint

@@ -37,11 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="SequenceCheck.cs" />
-<<<<<<< HEAD
-    <Compile Include="StringOptions.cs" />
-=======
     <Compile Include="EntryPoint.cs" />
->>>>>>> Error correction
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
