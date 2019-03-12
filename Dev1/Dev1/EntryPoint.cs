@@ -1,0 +1,37 @@
+﻿using System;
+
+namespace Dev1
+{
+    /// <summary>
+    /// <param name="args">Arguments from command line</param>
+    /// </summary>
+    class EntryPoint
+    {
+        static void Main(string[] args)
+        {
+            try
+            {
+                if (args.Length == 0)
+                {
+                    throw new Exception("Please enter a argument.");
+                }
+                else if (args[0].Length < 2)
+                {
+                    throw new Exception("Please enter more than two symbols.");
+                }
+                else
+                {
+                    SequenceCheck sequencesFinder = new SequenceCheck(args);
+                    sequencesFinder.CheckSequence();
+                    
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"Исключение: {ex.Message}");
+                Console.WriteLine($"Метод: {ex.TargetSite}");
+                Console.WriteLine($"Трассировка стека: {ex.StackTrace}");
+            }
+        }
+    }
+}
