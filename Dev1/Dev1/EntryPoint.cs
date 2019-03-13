@@ -22,9 +22,9 @@ namespace Dev1
                 }
                 else
                 {
-                    SequenceCheck sequencesFinder = new SequenceCheck(args);
-                    sequencesFinder.CheckSequence();
-                    
+                    FinderAndDisplayer sequencesFinder = new FinderAndDisplayer(args);
+                    sequencesFinder.DisplaySequence(sequencesFinder.CheckSequence());
+
                 }
             }
             catch(Exception ex)

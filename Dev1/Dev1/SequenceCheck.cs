@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Text;
+using System.Collections.Generic;
 
 namespace Dev1
 {
-    class SequenceCheck
+    class FinderAndDisplayer
     {
         private StringBuilder workingString;
 
@@ -12,11 +13,11 @@ namespace Dev1
         /// </summary>
         /// <param name="temporaryString"></param>
 
-        public SequenceCheck(StringBuilder temporaryString)
+        public FinderAndDisplayer(StringBuilder temporaryString)
         {
             if (workingString.Length < 2)
             {
-                throw new FormatException("String's length less than two symbols");
+                throw new FormatException("String's length less than two symbols.");
             }
             else
             {
@@ -29,7 +30,7 @@ namespace Dev1
         /// The constructor creates a string from an array of strings.
         /// </summary>
         /// <param name="input">Array of strings</param>
-        public SequenceCheck(string[] input)
+        public FinderAndDisplayer(string[] input)
         {
             workingString = new StringBuilder();
 
@@ -44,11 +45,14 @@ namespace Dev1
         /// Compare the next symbol with the previous one and write 
         /// to the console if they are different.
         /// </summary>
-        public void CheckSequence()
-        {   
+        public List<string> CheckSequence()
+        {
+            StringBuilder sequence;
+            List<string> sequences = new List<string>();
+
             for (int i = 0; i < workingString.Length - 1; i++)
             {
-                StringBuilder sequence = new StringBuilder();
+                sequence = new StringBuilder();
                 sequence.Append(workingString[i]);
 
                 for (int j = i + 1; j < workingString.Length; j++)
@@ -56,9 +60,25 @@ namespace Dev1
                     if (workingString[j - 1] != workingString[j])
                     {
                         sequence.Append(workingString[j]);
-                        Console.WriteLine(sequence);
+                        sequences.Add(sequence.ToString());
                     }
                     else break;
+                }
+            }
+            return sequences;
+        }
+
+        public void DisplaySequence(List<string> sequences)
+        {
+            if (sequences.Count == 0)
+            {
+                Console.WriteLine("The sequence contains nothing.");
+            }
+            else
+            {
+                foreach (string sequence in sequences)
+                {
+                    Console.WriteLine(sequence);
                 }
             }
         }
