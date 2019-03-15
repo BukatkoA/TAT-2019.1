@@ -29,9 +29,9 @@ namespace Dev1
             }
             catch(Exception ex)
             {
-                Console.WriteLine($"Исключение: {ex.Message}");
-                Console.WriteLine($"Метод: {ex.TargetSite}");
-                Console.WriteLine($"Трассировка стека: {ex.StackTrace}");
+                Console.WriteLine($"An exception: {ex.Message}");
+                Console.WriteLine($"Method: {ex.TargetSite}");
+                Console.WriteLine($"Stack trace: {ex.StackTrace}");
             }
         }
     }
