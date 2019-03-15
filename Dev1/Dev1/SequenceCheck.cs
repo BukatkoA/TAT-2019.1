@@ -68,6 +68,10 @@ namespace Dev1
             return sequences;
         }
 
+        /// <summary>
+        /// Display the sequence to the console.
+        /// </summary>
+        /// <param name="sequences">Final sequence</param>
         public void DisplaySequence(List<string> sequences)
         {
             if (sequences.Count == 0)
