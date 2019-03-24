@@ -1,5 +1,8 @@
 ﻿namespace Dev3
 {
+    /// <summary>
+    /// Abstract class for employees
+    /// </summary>
     abstract class Employee
     {
         public int Salary { get; protected set; }

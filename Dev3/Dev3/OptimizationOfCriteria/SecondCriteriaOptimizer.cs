@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace Dev3
 {
+    /// <summary>
+    /// Optimization class by second criterion.
+    /// </summary>
     class SecondCriteriaOptimizer : Optimizer
     {
         private int Perfomance { get; set; }
@@ -13,6 +16,11 @@ namespace Dev3
             this.Perfomance = perfomance;
         }
 
+        /// <summary>
+        /// Creates an optimized list of employees.
+        /// </summary>
+        /// <param name="listOfEmployees">List of employees</param>
+        /// <returns>Optimized list of company employees</returns>
         public override List<Employee> Choose(List<Employee> listOfEmployees)
         {
             var sortedListOfEmployees = listOfEmployees.OrderBy(i => i.Value);

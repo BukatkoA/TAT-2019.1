@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace Dev3
 {
+    /// <summary>
+    /// Class containing information about employees.
+    /// </summary>
     class Company
     {
         const int juniorCount = 40; //The number of total Juniors in the company.
@@ -35,11 +38,20 @@ namespace Dev3
             }
         }
 
+        /// <summary>
+        /// Gets a list of company employees by the selected criteria.
+        /// </summary>
+        /// <param name="optimizer">Criterion</param>
+        /// <returns>Optimized list of company employees</returns>
         public List<Employee> GetEmployees(Optimizer optimizer)
         {
             return optimizer.Choose(ListOfEmployees);
         }
 
+        /// <summary>
+        /// Checks on staff sufficiency and display optimized list of company employees.
+        /// </summary>
+        /// <param name="OptimizedEmployeeList">Optimized list of company employees</param>
         public static void ShowSortedList(List<Employee> OptimizedEmployeeList)
         {
             var employeesCounter = new int[4];
