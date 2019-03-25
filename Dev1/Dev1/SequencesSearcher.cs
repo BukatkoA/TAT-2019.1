@@ -4,41 +4,27 @@ using System.Collections.Generic;
 
 namespace Dev1
 {
-    class FinderAndDisplayer
+    class Finder
     {
         private StringBuilder workingString;
 
         /// <summary>
         /// SequenceCheck constructor checks for the correctness of the entered string.
         /// </summary>
-        /// <param name="temporaryString"></param>
-
-        public FinderAndDisplayer(StringBuilder temporaryString)
-        {
-            if (workingString.Length < 2)
-            {
-                throw new FormatException("String's length less than two symbols.");
-            }
-            else
-            {
-                workingString = temporaryString;
-            }
-
-        }
-
-        /// <summary>
-        /// The constructor creates a string from an array of strings.
-        /// </summary>
-        /// <param name="input">Array of strings</param>
-        public FinderAndDisplayer(string[] input)
+        /// <param name="inputString">Array of strings</param>
+        public Finder(string[] inputString)
         {
             workingString = new StringBuilder();
 
-            foreach (string word in input)
+            foreach (string word in inputString)
             {
-                workingString.Append(word + " ");
+                workingString.Append(word);
             }
-            workingString.Remove(workingString.Length - 1, 1);
+
+            if (workingString.Length < 2)
+            {
+                throw new FormatException();
+            }
         }
 
         /// <summary>
@@ -76,7 +62,7 @@ namespace Dev1
         {
             if (sequences.Count == 0)
             {
-                Console.WriteLine("The sequence contains nothing.");
+                throw new FormatException();
             }
             else
             {

@@ -22,16 +22,17 @@ namespace Dev1
                 }
                 else
                 {
-                    FinderAndDisplayer sequencesFinder = new FinderAndDisplayer(args);
+                    Finder sequencesFinder = new Finder(args);
                     sequencesFinder.DisplaySequence(sequencesFinder.CheckSequence());
-
                 }
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Error. Make sure to send a string with at least 2 characters.");
             }
             catch(Exception ex)
             {
                 Console.WriteLine($"An exception: {ex.Message}");
-                Console.WriteLine($"Method: {ex.TargetSite}");
-                Console.WriteLine($"Stack trace: {ex.StackTrace}");
             }
         }
     }
