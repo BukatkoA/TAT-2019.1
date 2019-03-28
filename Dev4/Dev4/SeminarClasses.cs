@@ -7,48 +7,40 @@ namespace Dev4
     /// </summary>
     class SeminarClasses : EntityMaterial
     {
-        readonly List<string> Task;
-        readonly Dictionary<string, string> QuestionAndAnswer;
+        public List<string> Task { get; private set; }
+        public Dictionary<string, string> QuestionAndAnswer { get; private set; }
 
         /// <summary>
-        /// The constructor sets the class description.
+        /// The constructor initializes the fields.
         /// </summary>
         public SeminarClasses() : base()
         {
-            Task = null;
-            QuestionAndAnswer = null;
-            description = "Seminar Classes description";
-        }
-
-        /// <summary>
-        /// The constructor creates objects with all the information.
-        /// </summary>
-        /// <param name="Task">Task list</param>
-        /// <param name="QuestionAndAnswer">Dictionary with quastion and answer</param>
-        public SeminarClasses(List<string> Task, Dictionary<string, string> QuestionAndAnswer) : base()
-        {
-            this.Task.AddRange(Task);
-            this.QuestionAndAnswer = QuestionAndAnswer;
-            description = "Seminar Classes description";
-        }
-
-        /// <summary>
-        /// Returns the description of the seminar classes
-        /// </summary>
-        /// <returns>Description</returns>
-        public override string ToString()
-        {
-            return $"Description: {description}";
+            Task = new List<string>() { "Multiply values", "Divide value" };
+            QuestionAndAnswer = new Dictionary<string, string>()
+            {
+                { "2 * 2 = ?", "4" },
+                { "6 / 2 = ?", "3" }
+            };
         }
 
         /// <summary>
         /// Implemented interface method deeply copies object.
         /// </summary>
         /// <returns>The cloned object</returns>
-        public object Clone()
+        public override object Clone()
         {
-            SeminarClasses seminarClasses = new SeminarClasses(Task, QuestionAndAnswer);
-            return seminarClasses;
+            List<string> Task = new List<string>();
+            this.Task.AddRange(Task);
+            Dictionary<string, string> QuestionAndAnswer = new Dictionary<string, string>();
+            this.QuestionAndAnswer = QuestionAndAnswer;
+
+            return new SeminarClasses
+            {
+                MyGuid = MyGuid,
+                Description = Description,
+                Task = Task,
+                QuestionAndAnswer = QuestionAndAnswer
+            };
         }
     }
 }

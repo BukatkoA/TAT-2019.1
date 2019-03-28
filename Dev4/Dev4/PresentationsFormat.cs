@@ -3,7 +3,7 @@
     /// <summary>
     /// Enum presentation format.
     /// </summary>
-    public enum FormatPresentations
+    enum FormatPresentations
     {
         Unknown,
         PPT,

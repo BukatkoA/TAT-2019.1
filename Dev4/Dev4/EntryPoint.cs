@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace Dev4
 {
@@ -16,25 +15,8 @@ namespace Dev4
         {
             try
             {
-                Lectures lectures = new Lectures();
-                List<Lectures> listOfLectures = new List<Lectures> { lectures };
-                Discipline discipline = new Discipline(listOfLectures);
-                Discipline cloneDiscipline = (Discipline)discipline.Clone();
-                discipline[0].SettingDescription("FirstDescription");
-
-                if (discipline.Equals(discipline))
-                {
-                    Console.WriteLine("true");
-                }
-                
-                if (discipline.Equals(cloneDiscipline))
-                {
-                    Console.WriteLine("true");
-                }
-
-                discipline.SettingDescription("SecondDescription");
-                Console.WriteLine(discipline[0].ToString());
-                Console.WriteLine(cloneDiscipline[0].ToString());
+                Lectures lecture = new Lectures();
+                Console.WriteLine(lecture.PresentationsLecture.Url);
             }
             catch (FormatException)
             {

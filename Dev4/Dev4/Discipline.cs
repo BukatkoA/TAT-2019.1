@@ -8,50 +8,22 @@ namespace Dev4
     /// </summary>
     class Discipline : ICloneable
     {
-        private List<Lectures> lectures;
-        private string description;
-        protected Guid MyGuid;
+        public List<Lectures> Lectures { get; private set; }
+        public Guid MyGuid { get; private set; }
+        public string Description { get; private set; }
 
         /// <summary>
         /// The constructor sets the class description.
         /// </summary>
         public Discipline()
         {
-            MyGuid = Guid.NewGuid();
-            description = "Discipline";
-        }
-
-        /// <summary>
-        /// The constructor creates objects with all the information.
-        /// </summary>
-        /// <param name="IntroducedLectures"></param>
-        /// <param name="MyGuid">GUID</param>
-        /// <param name="description">Description</param>
-        public Discipline(List<Lectures> IntroducedLectures, Guid MyGuid, string description)
-        {
-            if (IntroducedLectures != null)
+            SettingDescription description = new SettingDescription();
+            Description = description.SetDescription();
+            if (Description != null && Description.Length > 256)
             {
-                lectures = new List<Lectures>();
-
-                foreach (Lectures lecture in IntroducedLectures)
-                {
-                    lectures.Add((Lectures)lecture.Clone());
-                }
+                throw new Exception("Too large description");
             }
-
-            this.MyGuid = MyGuid;
-            this.description = description;
-        }
-
-        /// <summary>
-        /// This constructor create object only with Lectures list.
-        /// </summary>
-        /// <param name="lectures">Lecture list</param>
-        public Discipline(List<Lectures> lectures)
-        {
-            MyGuid = Guid.NewGuid();
-            description = "Discipline";
-            this.lectures = lectures;
+            MyGuid = Description.SetGuid();
         }
 
         /// <summary>
@@ -61,24 +33,8 @@ namespace Dev4
         /// <returns>Lecture</returns>
         public Lectures this[int index]
         {
-            get { return lectures[index]; }
-            set { lectures[index] = value; }
-        }
-
-        /// <summary>
-        /// This method adds a description to the object.
-        /// </summary>
-        /// <param name="inputDescription">Inputed description</param>
-        public void SettingDescription(string inputDescription)
-        {
-            if (inputDescription.Length <= 256)
-            {
-                description = inputDescription;
-            }
-            else
-            {
-                throw new FormatException();
-            } 
+            get { return Lectures[index]; }
+            set { Lectures[index] = value; }
         }
 
         /// <summary>
@@ -87,16 +43,7 @@ namespace Dev4
         /// <returns>Description</returns>
         public override string ToString()
         {
-            return $"Description: {description}";
-        }
-
-        /// <summary>
-        /// This method returns the object GUID
-        /// </summary>
-        /// <returns>GUID</returns>
-        public Guid GuidDiscipline()
-        {
-            return MyGuid;
+            return string.IsNullOrEmpty(Description) ? "No description" : $"Description: {Description}";
         }
 
         /// <summary>
@@ -104,14 +51,17 @@ namespace Dev4
         /// </summary>
         /// <param name="obj">Compared object</param>
         /// <returns>Comparison result</returns>
-        public override bool Equals(Object obj)
+        public override bool Equals(object obj)
         {
-            if (obj is Discipline)
+            if (obj == null)
             {
-                Discipline disciplineObject = (Discipline)obj;
-                return this.GuidDiscipline() == disciplineObject.GuidDiscipline() ? true : false;
+                return false;
             }
-            else return false;
+            if (obj is Discipline discipline)
+            {
+                return (MyGuid == discipline.MyGuid);
+            }
+            return false;
         }
 
         /// <summary>
@@ -129,8 +79,23 @@ namespace Dev4
         /// <returns>The cloned object</returns>
         public object Clone()
         {
-            Discipline discipline = new Discipline(lectures, MyGuid, description);
-            return discipline;
+            List<Lectures> IntroducedLectures = new List<Lectures>();
+            if (IntroducedLectures != null)
+            {
+                Lectures = new List<Lectures>();
+
+                foreach (Lectures lecture in IntroducedLectures)
+                {
+                    Lectures.Add((Lectures)lecture.Clone());
+                }
+            }
+
+            return new Discipline
+            {
+                MyGuid = MyGuid,
+                Description = Description,
+                Lectures = Lectures,
+            };
         }
     }
 }

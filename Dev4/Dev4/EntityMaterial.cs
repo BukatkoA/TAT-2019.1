@@ -5,42 +5,32 @@ namespace Dev4
     /// <summary>
     /// Base abstract class of Lectures, SeminarClasses and LaboratoryClasses.
     /// </summary>
-    abstract class EntityMaterial
+    abstract class EntityMaterial : ICloneable
     {
-        protected Guid MyGuid;
-        protected string description;
+        public Guid MyGuid { get; protected set; }
+        public string Description { get; protected set; }
 
         /// <summary>
         /// Sets the GUID on the creation of an object
         /// </summary>
         public EntityMaterial()
         {
-            MyGuid = Guid.NewGuid();
-        }
-
-        /// <summary>
-        /// This method returns the object GUID
-        /// </summary>
-        /// <returns>GUID</returns>
-        public Guid GetGuid()
-        {
-            return MyGuid;
-        }
-
-        /// <summary>
-        /// This method adds a description to the object.
-        /// </summary>
-        /// <param name="inputDescription">Inputed description</param>
-        public void SettingDescription(string inputDescription)
-        {
-            if (inputDescription.Length <= 256)
+            SettingDescription description = new SettingDescription();
+            Description = description.SetDescription();
+            if (Description != null && Description.Length > 256)
             {
-                description = inputDescription;
+                throw new Exception("Error. The text of the description exceeds 256 symbols.");
             }
-            else
-            {
-                throw new FormatException();
-            }  
+            MyGuid = Description.SetGuid();
+        }
+
+        /// <summary>
+        /// Returns the description of the seminar classes
+        /// </summary>
+        /// <returns>Description</returns>
+        public override string ToString()
+        {
+            return string.IsNullOrEmpty(Description) ? "No description" : $"Description: {Description}";
         }
 
         /// <summary>
@@ -48,14 +38,13 @@ namespace Dev4
         /// </summary>
         /// <param name="obj">Compared object</param>
         /// <returns>Comparison result</returns>
-        public override bool Equals(Object obj)
+        public override bool Equals(object obj)
         {
-            if (obj is EntityMaterial)
+            if (obj != null && obj is EntityMaterial material)
             {
-                EntityMaterial disciplineObject = (EntityMaterial)obj;
-                return this.GetGuid() == disciplineObject.GetGuid() ? true : false;
+                return (MyGuid == material.MyGuid);
             }
-            else return false;
+            return false;
         }
 
         /// <summary>
@@ -66,5 +55,10 @@ namespace Dev4
         {
             return base.GetHashCode();
         }
+
+        /// <summary>
+        /// Abstract method performs deep entity cloning
+        /// </summary>
+        public abstract object Clone();
     }
 }
