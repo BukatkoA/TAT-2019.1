@@ -27,10 +27,10 @@ namespace Dev4
         }
 
         /// <summary>
-        /// Indexator to receive a lecture on the index
+        /// Indexator to get a lecture on the index and its materials
         /// </summary>
         /// <param name="index">Inputed index</param>
-        /// <returns>Materials</returns>
+        /// <returns>List of materials</returns>
         public List<EntityMaterial> this[int index]
         {
             get
