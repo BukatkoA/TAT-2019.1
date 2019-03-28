@@ -30,11 +30,22 @@ namespace Dev4
         /// Indexator to receive a lecture on the index
         /// </summary>
         /// <param name="index">Inputed index</param>
-        /// <returns>Lecture</returns>
-        public Lectures this[int index]
+        /// <returns>Materials</returns>
+        public List<EntityMaterial> this[int index]
         {
-            get { return Lectures[index]; }
-            set { Lectures[index] = value; }
+            get
+            {
+                List<EntityMaterial> entityMaterials = new List<EntityMaterial>() { Lectures[index] };
+                foreach (SeminarClasses seminar in Lectures[0].Seminars)
+                {
+                    entityMaterials.Add(seminar);
+                }
+                foreach (LaboratoryClasses laboratoryLesson in Lectures[0].Laboratory)
+                {
+                    entityMaterials.Add(laboratoryLesson);
+                }
+                return entityMaterials;
+            }
         }
 
         /// <summary>
@@ -53,11 +64,7 @@ namespace Dev4
         /// <returns>Comparison result</returns>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
-            if (obj is Discipline discipline)
+            if (obj != null && obj is Discipline discipline)
             {
                 return (MyGuid == discipline.MyGuid);
             }

@@ -40,9 +40,9 @@ namespace Dev4
         /// <returns>Comparison result</returns>
         public override bool Equals(object obj)
         {
-            if (obj != null && obj is EntityMaterial material)
+            if (obj != null && obj is EntityMaterial entityMaterial)
             {
-                return (MyGuid == material.MyGuid);
+                return (MyGuid == entityMaterial.MyGuid);
             }
             return false;
         }
