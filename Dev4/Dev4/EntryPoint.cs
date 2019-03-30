@@ -15,8 +15,11 @@ namespace Dev4
         {
             try
             {
-                Lectures lecture = new Lectures();
-                Console.WriteLine(lecture.PresentationsLecture.Url);
+                Discipline discipline = new Discipline();
+                Console.WriteLine(discipline.ToString());
+                Discipline disciplineClone = (Discipline)discipline.Clone();
+                Console.WriteLine(discipline.Equals(disciplineClone) ? "Clone successful" : "Something wrong");
+                Console.WriteLine(discipline[0][0] != disciplineClone[0][0] ? "Deep cloning" : "Surface cloning");
             }
             catch (FormatException)
             {

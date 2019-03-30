@@ -13,24 +13,10 @@ namespace Dev4
         public string Description { get; private set; }
 
         /// <summary>
-        /// The constructor sets the class description.
-        /// </summary>
-        public Discipline()
-        {
-            SettingDescription description = new SettingDescription();
-            Description = description.SetDescription();
-            if (Description != null && Description.Length > 256)
-            {
-                throw new Exception("Too large description");
-            }
-            MyGuid = Description.SetGuid();
-        }
-
-        /// <summary>
-        /// Indexator to get a lecture on the index and its materials
+        /// Indexator to receive a lecture on the index
         /// </summary>
         /// <param name="index">Inputed index</param>
-        /// <returns>List of materials</returns>
+        /// <returns>Lecture</returns>
         public List<EntityMaterial> this[int index]
         {
             get
@@ -49,6 +35,21 @@ namespace Dev4
         }
 
         /// <summary>
+        /// The constructor sets the class description.
+        /// </summary>
+        public Discipline()
+        {
+            SettingDescription description = new SettingDescription();
+            Description = description.SetDescription();
+            if (Description != null && Description.Length > 256)
+            {
+                throw new Exception("Too large description");
+            }
+            MyGuid = Description.SetGuid();
+            Lectures = new List<Lectures>() { new Lectures(), new Lectures() };
+        }
+
+        /// <summary>
         /// Returns the description of the seminar classes
         /// </summary>
         /// <returns>Description</returns>
@@ -64,12 +65,17 @@ namespace Dev4
         /// <returns>Comparison result</returns>
         public override bool Equals(object obj)
         {
-            if (obj != null && obj is Discipline discipline)
+            if (obj == null)
+            {
+                return false;
+            }
+            Discipline discipline = obj as Discipline;
+            if (discipline != null)
             {
                 return (MyGuid == discipline.MyGuid);
             }
             return false;
-        }
+        }   
 
         /// <summary>
         /// Serves as the default hash function.
@@ -87,21 +93,16 @@ namespace Dev4
         public object Clone()
         {
             List<Lectures> IntroducedLectures = new List<Lectures>();
-            if (IntroducedLectures != null)
+            foreach (Lectures lecture in Lectures)
             {
-                Lectures = new List<Lectures>();
-
-                foreach (Lectures lecture in IntroducedLectures)
-                {
-                    Lectures.Add((Lectures)lecture.Clone());
-                }
+                IntroducedLectures.Add((Lectures)lecture.Clone());
             }
 
             return new Discipline
             {
                 MyGuid = MyGuid,
                 Description = Description,
-                Lectures = Lectures,
+                Lectures = IntroducedLectures,
             };
         }
     }
