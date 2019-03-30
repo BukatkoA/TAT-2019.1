@@ -47,6 +47,7 @@ namespace Dev4
             }
 
             Presentations presentation = new Presentations(PresentationsLecture.Url, PresentationsLecture.PresentationsFormat);
+
             return new Lectures
             {
                 MyGuid = MyGuid,

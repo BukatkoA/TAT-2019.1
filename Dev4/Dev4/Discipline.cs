@@ -43,7 +43,7 @@ namespace Dev4
             Description = description.SetDescription();
             if (Description != null && Description.Length > 256)
             {
-                throw new Exception("Too large description");
+                throw new Exception("Error. The text of the description exceeds 256 symbols.");
             }
             MyGuid = Description.SetGuid();
             Lectures = new List<Lectures>() { new Lectures(), new Lectures() };
