@@ -1,0 +1,6 @@
+D:\Projects\Dev5\Dev5\bin\Debug\Dev5.exe.config
+D:\Projects\Dev5\Dev5\bin\Debug\Dev5.exe
+D:\Projects\Dev5\Dev5\bin\Debug\Dev5.pdb
+D:\Projects\Dev5\Dev5\obj\Debug\Dev5.csproj.CoreCompileInputs.cache
+D:\Projects\Dev5\Dev5\obj\Debug\Dev5.exe
+D:\Projects\Dev5\Dev5\obj\Debug\Dev5.pdb
