@@ -8,14 +8,14 @@ namespace Dev5
     public abstract class FlyingObject : IFlyable
     {
         public event EventHandler<ObjectFlewAwayEventArgs> ObjectFlewAway;
-        protected double Speed { get; set; }
+        protected double FlySpeed { get; set; }
         protected Point StartPoint { get; set; }
         protected Point FinishPoint { get; set; }
 
         /// <summary>
         /// Constuctor of flying object.
         /// </summary>
-        public FlyingObject(double speed) => Speed = speed;
+        public FlyingObject(double speed) => FlySpeed = speed;
 
         /// <summary>
         /// Interface method implementation.
@@ -24,7 +24,7 @@ namespace Dev5
         virtual public void FlyTo(Point newPoint)
         {
             FinishPoint = newPoint;
-            ObjectFlewAway?.Invoke(WhoAmI(), new ObjectFlewAwayEventArgs(GetFlyTime(), Speed));
+            ObjectFlewAway?.Invoke(WhoAmI(), new ObjectFlewAwayEventArgs(GetFlyTime(), FlySpeed));
             StartPoint = FinishPoint;
         }
 
@@ -38,6 +38,6 @@ namespace Dev5
         /// Interface method implementation.
         /// </summary>
         /// <returns>Time of flight</returns>
-        virtual public double GetFlyTime() => StartPoint.GetDistanceToPoint(FinishPoint) / Speed;
+        virtual public double GetFlyTime() => StartPoint.GetDistanceToPoint(FinishPoint) / FlySpeed;
     }
 }

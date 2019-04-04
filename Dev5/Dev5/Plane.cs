@@ -22,7 +22,7 @@
         public override void FlyTo(Point newPoint)
         {
             base.FlyTo(newPoint);
-            Speed = StartingPlaneSpeed;
+            FlySpeed = StartingPlaneSpeed;
         }
 
         /// <summary>
@@ -34,20 +34,14 @@
             double distance = StartPoint.GetDistanceToPoint(FinishPoint);
             double flightTime = 0;
 
-            while (distance > 0)
+            for (; distance > distanceOfChangeSpeed;)
             {
-                if (distance > distanceOfChangeSpeed)
-                {
-                    flightTime += distanceOfChangeSpeed / Speed;
-                    distance -= distanceOfChangeSpeed;
-                    Speed += speedIncrease;
-                }
-                else
-                {
-                    flightTime += distance / Speed;
-                    break;
-                }
+                flightTime += distanceOfChangeSpeed / FlySpeed;
+                FlySpeed += speedIncrease;
+                distance -= distanceOfChangeSpeed;
             }
+
+            flightTime += distance / FlySpeed;
 
             return flightTime;
         }
