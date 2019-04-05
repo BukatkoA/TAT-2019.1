@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C29414E1-43F3-4ADB-B363-DE022FE485EB}</ProjectGuid>
+    <ProjectGuid>{3A629785-2682-402F-BF70-76A3CA9C368A}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Dev5</RootNamespace>
-    <AssemblyName>Dev5</AssemblyName>
+    <RootNamespace>ClassWork3</RootNamespace>
+    <AssemblyName>ClassWork3</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,15 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bird.cs" />
+    <Compile Include="NormalTriangleBuilder.cs" />
+    <Compile Include="NormalTriangle.cs" />
+    <Compile Include="TriangleBuilder.cs" />
     <Compile Include="EntryPoint.cs" />
-    <Compile Include="FlyingObject.cs" />
-    <Compile Include="IFlyable.cs" />
-    <Compile Include="ObjectFlewAwayEventArgs.cs" />
-    <Compile Include="Plane.cs" />
+    <Compile Include="EquilateralTriangleBuilder.cs" />
+    <Compile Include="EquilateralTriangle.cs" />
     <Compile Include="Point.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SpaceShip.cs" />
+    <Compile Include="RightTriangleBuilder.cs" />
+    <Compile Include="RightTriangle.cs" />
+    <Compile Include="Triangle.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
