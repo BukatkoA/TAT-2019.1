@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3A629785-2682-402F-BF70-76A3CA9C368A}</ProjectGuid>
+    <ProjectGuid>{3C0785B4-3C61-4B6B-9FD8-0FFEFD165BDA}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ClassWork3</RootNamespace>
-    <AssemblyName>ClassWork3</AssemblyName>
+    <RootNamespace>Dev6</RootNamespace>
+    <AssemblyName>Dev6</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,20 +43,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NormalTriangleBuilder.cs" />
-    <Compile Include="NormalTriangle.cs" />
-    <Compile Include="TriangleBuilder.cs" />
+    <Compile Include="CarCollection.cs" />
+    <Compile Include="CarGetter.cs" />
+    <Compile Include="CommandFactory.cs" />
+    <Compile Include="AveragePriceCommand.cs" />
+    <Compile Include="AveragePriceTypesCommand.cs" />
+    <Compile Include="Car.cs" />
+    <Compile Include="CountAllCarsCommand.cs" />
+    <Compile Include="CountTypesCarsCommand.cs" />
     <Compile Include="EntryPoint.cs" />
-    <Compile Include="EquilateralTriangleBuilder.cs" />
-    <Compile Include="EquilateralTriangle.cs" />
-    <Compile Include="Point.cs" />
+    <Compile Include="ICommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RightTriangleBuilder.cs" />
-    <Compile Include="RightTriangle.cs" />
-    <Compile Include="Triangle.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Cars.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
