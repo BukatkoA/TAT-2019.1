@@ -17,13 +17,13 @@ namespace Dev6
         /// <param name="brand">Brand for counting</param>
         public AveragePriceTypesCommand(CarCollection carCollection, string brand)
         {
-            Catalog = carCollection;
-            Brand = brand;
+            this.Catalog = carCollection;
+            this.Brand = brand;
         }
 
         /// <summary>
         /// Executes command that outputs average price of brand to console
         /// </summary>
-        public void Execute() => Console.WriteLine($"Average price {Brand} : {Catalog.GetAveragePriceType(Brand)}");
+        public void Execute() => Console.WriteLine($"Average price {this.Brand} : {this.Catalog?.GetAveragePriceType(this.Brand)}");
     }
 }

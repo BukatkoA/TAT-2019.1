@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cars>
+  <car name="Isuzu FRR">
+    <brand>Isuzu</brand>
+    <model>FRR</model>
+    <count>200</count>
+    <price>85000</price>
+  </car>
+  <car name="Volvo FH Series">
+    <brand>Volvo</brand>
+    <model>FH</model>
+    <count>5000</count>
+    <price>135000</price>
+  </car>
+  <car name="Isuzu N Series">
+    <brand>Isuzu</brand>
+    <model>N</model>
+    <count>1000</count>
+    <price>35000</price>
+  </car>
+  <car name="Isuzu F Series">
+    <brand>Isuzu</brand>
+    <model>F</model>
+    <count>3000</count>
+    <price>45000</price>
+  </car>
+</cars>

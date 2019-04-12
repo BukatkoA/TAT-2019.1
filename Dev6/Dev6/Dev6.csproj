@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="CarCollection.cs" />
     <Compile Include="CarGetter.cs" />
+    <Compile Include="CarTypes.cs" />
+    <Compile Include="CommandDirectory.cs" />
     <Compile Include="CommandFactory.cs" />
     <Compile Include="AveragePriceCommand.cs" />
     <Compile Include="AveragePriceTypesCommand.cs" />
@@ -60,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Cars.xml" />
+    <Content Include="Trucks.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

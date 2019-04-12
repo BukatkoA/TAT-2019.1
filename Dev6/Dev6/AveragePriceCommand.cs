@@ -13,11 +13,11 @@ namespace Dev6
         /// Constructor initializes fields
         /// </summary>
         /// <param name="carCollection">Catalog of cars</param>
-        public AveragePriceCommand(CarCollection carCollection) => Catalog = carCollection;
+        public AveragePriceCommand(CarCollection carCollection) => this.Catalog = carCollection;
 
         /// <summary>
         /// Executes command that outputs average price to console
         /// </summary>
-        public void Execute() => Console.WriteLine("Average price: {0}", Catalog.GetAveragePrice());
+        public void Execute() => Console.WriteLine("Average price: {0}", this.Catalog?.GetAveragePrice());
     }
 }

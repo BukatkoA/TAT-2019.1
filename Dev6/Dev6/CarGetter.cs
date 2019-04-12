@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Xml;
+using System.Xml.Linq;
+using System.Linq;
 
 namespace Dev6
 {
@@ -9,67 +10,45 @@ namespace Dev6
     /// </summary>
     class CarGetter
     {
-        private XmlDocument XmlDoc { get; set; }
+        private static CarGetter _instance;
+        private XDocument XmlDoc { get; set; }
 
         /// <summary>
-        /// Constructor loads xml file
+        /// Constructor allocates memory
         /// </summary>
-        /// <param name="xmlFile">Xml file name</param>
-        public CarGetter(string xmlFile)
+        private CarGetter() => this.XmlDoc = new XDocument();
+
+        /// <summary>
+        /// Singleton pattern
+        /// Creates object if it doesn't exist
+        /// </summary>
+        /// <returns>CarGetter object</returns>
+        public static CarGetter GetInstance()
         {
-            XmlDoc = new XmlDocument();
-            XmlDoc.Load($"../../{xmlFile}.xml");
+            if (_instance == null)
+            {
+                _instance = new CarGetter();
+            }
+
+            return _instance;
         }
 
         /// <summary>
+        /// Loads xml file
         /// Gets cars from xml file
         /// </summary>
         /// <returns>List of cars</returns>
-        public List<Car> GetCars()
+        public IEnumerable<Car> GetCars(string XmlFileName)
         {
-            var cars = new List<Car>();
-            XmlElement xmlElement = XmlDoc.DocumentElement;
+            this.XmlDoc = XDocument.Load($"../../{XmlFileName}.xml");
 
-            foreach (XmlNode xmlNode in xmlElement)
-            {
-                string brand = string.Empty;
-                string model = string.Empty;
-                int count = 0;
-                int price = 0;
-
-                foreach (XmlNode childNode in xmlNode.ChildNodes)
-                {
-                    switch (childNode.Name)
-                    {
-                        case "brand":
-                            brand = childNode.InnerText;
-                            break;
-
-                        case "model":
-                            model = childNode.InnerText;
-                            break;
-
-                        case "count":
-                            if (!int.TryParse(childNode.InnerText, out count))
-                            {
-                                throw new Exception("Invalid count value");
-                            }
-                            break;
-
-                        case "price":
-                            if (!int.TryParse(childNode.InnerText, out price))
-                            {
-                                throw new Exception("Invalid price value");
-                            }
-                            break;
-
-                        default:
-                            break;
-                    }
-                }
-
-                cars.Add(new Car(brand, model, count, price));
-            }
+            IEnumerable<Car> cars = this.XmlDoc.Element("cars").Elements("car").Select(xe => new Car
+            (
+                xe.Element("brand").Value,
+                xe.Element("model").Value,
+                int.TryParse(xe.Element("count").Value, out int count) ? count : throw new Exception("Incorrect count value"),
+                int.TryParse(xe.Element("price").Value, out int price) ? price : throw new Exception("Incorrect price value")
+             ));
 
             return cars;
         }

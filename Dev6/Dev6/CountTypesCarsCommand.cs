@@ -13,11 +13,11 @@ namespace Dev6
         /// Constructor initializes fields
         /// </summary>
         /// <param name="carCollection">Catalog of car</param>
-        public CountTypesCarsCommand(CarCollection carCollection) => Catalog = carCollection;
+        public CountTypesCarsCommand(CarCollection carCollection) => this.Catalog = carCollection;
 
         /// <summary>
         /// Executes command that outputs count of brands to console
         /// </summary>
-        public void Execute() => Console.WriteLine("Total number of types: {0}", Catalog.GetCountTypes());
+        public void Execute() => Console.WriteLine("Total number of types: {0}", this.Catalog?.GetCountTypes());
     }
 }
