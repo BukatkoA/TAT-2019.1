@@ -14,7 +14,10 @@ namespace Dev6
         /// Constructor initializes fields
         /// </summary>
         /// <param name="cars">List of cars</param>
-        public CarCollection(IEnumerable<Car> cars) => this.Cars = cars;
+        public CarCollection(IEnumerable<Car> cars)
+        {
+            this.Cars = cars;
+        }
 
         /// <summary>
         /// Counts average price

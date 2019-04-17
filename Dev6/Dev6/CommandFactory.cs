@@ -16,63 +16,54 @@ namespace Dev6
         /// Constructor initializes fields
         /// </summary>
         /// <param name="carCollection">Catalog of cars</param>
-        public CommandFactory(List<CarCollection> carCollection) => this.Catalogs = carCollection;
+        public CommandFactory(List<CarCollection> carCollection)
+        {
+            this.Catalogs = carCollection;
+        }
 
         /// <summary>
         /// Gets command
         /// </summary>
         public void GetCommand()
         {
-            for (bool entry = true; entry;)
+            bool entry = true;
+            InputTypes inputer = new InputTypes();
+
+            while (entry)
             {
-                Console.WriteLine("Enter command:\n" + "1. Count types\n" + "2. Count all\n" + "3. Average price\n" +
-                    "4. Average price type\n" + "5. Execute\n" + "6. Exit");
-
-                if (!int.TryParse(Console.ReadLine(), out int input))
-                {
-                    Console.WriteLine("Invalid input data");
-                    continue;
-                }
-
-                switch ((CatalogCommands)input)
+                switch (inputer.GetCommand())
                 {
                     case CatalogCommands.CountTypes:
-                        this.Command = new CountTypesCarsCommand(Catalogs[ChooseCarType()]);
+                        this.Command = new CountTypesCarsCommand(this.Catalogs[this.ChooseCarType()]);
                         break;
-
                     case CatalogCommands.CountAll:
-                        this.Command = new CountAllCarsCommand(Catalogs[ChooseCarType()]);
+                        this.Command = new CountAllCarsCommand(this.Catalogs[this.ChooseCarType()]);
                         break;
-
                     case CatalogCommands.AveragePrice:
-                        this.Command = new AveragePriceCommand(Catalogs[ChooseCarType()]);
+                        this.Command = new AveragePriceCommand(this.Catalogs[this.ChooseCarType()]);
                         break;
-
                     case CatalogCommands.AveragePriceType:
                         Console.WriteLine("Enter car brand:");
-                        this.Command = new AveragePriceTypesCommand(Catalogs[ChooseCarType()], Console.ReadLine());
+                        this.Command = new AveragePriceTypesCommand(this.Catalogs[this.ChooseCarType()], Console.ReadLine());
                         break;
-
                     case CatalogCommands.Execute:
                         entry = false;
                         this.Command = null;
                         continue;
-
                     case CatalogCommands.Exit:
                         entry = false;
                         this.Command = null;
                         this.ExecuteCommands = null;
                         continue;
-
                     default:
                         Console.WriteLine("Invalid command");
                         continue;
                 }
 
-                ExecuteCommands += Command.Execute;
+                this.ExecuteCommands += this.Command.Execute;
             }
 
-            ExecuteCommands?.Invoke();
+            this.ExecuteCommands?.Invoke();
         }
 
         /// <summary>
@@ -87,7 +78,7 @@ namespace Dev6
             {
                 Console.WriteLine("Enter type of car:\n" + $"1. {CarTypes.Car}\n" + $"2. {CarTypes.Truck}");
 
-                if (!int.TryParse(Console.ReadLine(), out carType) || carType > Catalogs.Count)
+                if (!int.TryParse(Console.ReadLine(), out carType) || carType > this.Catalogs.Count)
                 {
                     Console.WriteLine("Invalid input data");
                     continue;

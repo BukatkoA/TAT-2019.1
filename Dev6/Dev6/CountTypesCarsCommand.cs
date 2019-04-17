@@ -13,7 +13,10 @@ namespace Dev6
         /// Constructor initializes fields
         /// </summary>
         /// <param name="carCollection">Catalog of car</param>
-        public CountTypesCarsCommand(CarCollection carCollection) => this.Catalog = carCollection;
+        public CountTypesCarsCommand(CarCollection carCollection)
+        {
+            this.Catalog = carCollection;
+        }
 
         /// <summary>
         /// Executes command that outputs count of brands to console

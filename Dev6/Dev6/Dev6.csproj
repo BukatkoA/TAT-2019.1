@@ -55,6 +55,7 @@
     <Compile Include="CountTypesCarsCommand.cs" />
     <Compile Include="EntryPoint.cs" />
     <Compile Include="ICommand.cs" />
+    <Compile Include="InputTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

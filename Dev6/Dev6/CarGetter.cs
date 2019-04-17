@@ -16,7 +16,10 @@ namespace Dev6
         /// <summary>
         /// Constructor allocates memory
         /// </summary>
-        private CarGetter() => this.XmlDoc = new XDocument();
+        private CarGetter()
+        {
+            this.XmlDoc = new XDocument();
+        }
 
         /// <summary>
         /// Singleton pattern
@@ -46,8 +49,8 @@ namespace Dev6
             (
                 xe.Element("brand").Value,
                 xe.Element("model").Value,
-                int.TryParse(xe.Element("count").Value, out int count) ? count : throw new Exception("Incorrect count value"),
-                int.TryParse(xe.Element("price").Value, out int price) ? price : throw new Exception("Incorrect price value")
+                int.TryParse(xe.Element("count").Value, out int count) ? count : throw new Exception("Invalid count value"),
+                int.TryParse(xe.Element("price").Value, out int price) ? price : throw new Exception("Invalid price value")
              ));
 
             return cars;
