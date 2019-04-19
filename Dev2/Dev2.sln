@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.28809.33
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dev2", "Dev2\Dev2.csproj", "{1A3C0249-ED75-45D5-89FD-4A8B1E6B364B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dev2Tests", "ConvertToPhonemesTests\Dev2Tests.csproj", "{BCD89C9E-522B-418E-84D7-1165DEB836E6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dev2Tests", "Dev2Tests\Dev2Tests.csproj", "{BCD89C9E-522B-418E-84D7-1165DEB836E6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
