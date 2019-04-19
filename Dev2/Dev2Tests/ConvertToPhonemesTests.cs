@@ -38,11 +38,10 @@ namespace Dev2
             Assert.Throws<ArgumentOutOfRangeException>(() => converter.ConvertToPhenomes());
         }
 
-        [TestCase("мёди+к")]
-        [TestCase("иг+олка")]
+        [TestCase("иглк")]
         [TestCase("мо+ло+ко")]
-        [TestCase("почта")]
-        [TestCase("клмн")]
+        [TestCase("+правда+")]
+        [TestCase("ёж+")]
         public void Convert_IncorrectWord_ThrowsException(string inputString)
         {
             Assert.Throws<Exception>(() => new ConverterToPhonemes(inputString));
