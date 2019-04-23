@@ -3,6 +3,9 @@ using System.Linq;
 
 namespace Dev2
 {
+    /// <summary>
+    /// Checks for correct data entry
+    /// </summary>
     public class ValidationCheck
     {
         private string StringCheck { get; set; }
