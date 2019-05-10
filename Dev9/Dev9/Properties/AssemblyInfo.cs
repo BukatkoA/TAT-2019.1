@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ConvertToPhonemesTests")]
+[assembly: AssemblyTitle("Dev9")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ConvertToPhonemesTests")]
+[assembly: AssemblyProduct("Dev9")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("bcd89c9e-522b-418e-84d7-1165deb836e6")]
+[assembly: Guid("3cffbc13-60c5-4e12-bce4-2ca712215f61")]
 
 // Version information for an assembly consists of the following four values:
 //
