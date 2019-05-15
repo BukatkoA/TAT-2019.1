@@ -1,9 +1,0 @@
-C:\Users\PC\source\repos\ClassWork7\ClassWork7\obj\Debug\ClassWork7.csproj.CoreCompileInputs.cache
-C:\Users\PC\source\repos\ClassWork7\ClassWork7\bin\Debug\ClassWork7.exe.config
-C:\Users\PC\source\repos\ClassWork7\ClassWork7\bin\Debug\ClassWork7.exe
-C:\Users\PC\source\repos\ClassWork7\ClassWork7\bin\Debug\ClassWork7.pdb
-C:\Users\PC\source\repos\ClassWork7\ClassWork7\bin\Debug\WebDriver.dll
-C:\Users\PC\source\repos\ClassWork7\ClassWork7\bin\Debug\WebDriver.xml
-C:\Users\PC\source\repos\ClassWork7\ClassWork7\obj\Debug\ClassWork7.csproj.CopyComplete
-C:\Users\PC\source\repos\ClassWork7\ClassWork7\obj\Debug\ClassWork7.exe
-C:\Users\PC\source\repos\ClassWork7\ClassWork7\obj\Debug\ClassWork7.pdb
