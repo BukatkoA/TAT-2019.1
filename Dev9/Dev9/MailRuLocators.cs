@@ -21,7 +21,7 @@
         /// </summary>
         public class MainMailRuPage
         {
-            public string WriteMessageLocator { get; } = "//span[@class = 'b-toolbar__btn__text b-toolbar__btn__text_pad']";
+            public string WriteMessageLocator { get; } = "//span[contains(text(), 'Написать письмо')]";
         }
 
         /// <summary>

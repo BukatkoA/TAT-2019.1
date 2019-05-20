@@ -16,9 +16,9 @@ namespace Dev9
             {
                 var googleAccount = new GoogleAccount();
                 googleAccount.GoToUrl();
-                googleAccount.LogInPage("gogogomoro123@gmail.com", "Qwerty123qq");
-                /*.Finder()
-                .SenderMessage("mailexampleq@mail.ru", "Hi");*/
+                googleAccount.LogInPage("gogogomoro123@gmail.com", "Qwerty123qq")
+                .Finder();
+                //.SenderMessage("mailexampleq@mail.ru", "Hi");
                 /*var mailRuAccount = new MailRuAccount();
                 mailRuAccount.GoToUrl();
                 mailRuAccount.LogInPage("mailexampleq@mail.ru", "Qwerty123qq")

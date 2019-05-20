@@ -13,7 +13,7 @@
             public string PageLocator { get; } = "http://gmail.com/";
             public string LoginLocator { get; } = "//input[@name = 'identifier']";
             public string PasswordLocator { get; } = "//input[@name = 'password']";
-            public string LoginButtonLocator { get; } = "//content[@class= 'CwaK9']";
+            public string LoginButtonLocator { get; } = "//span[contains(text(), 'Далее')]";
         }
 
         /// <summary>
@@ -21,7 +21,7 @@
         /// </summary>
         public class MainGooglePage
         {
-            public string WriteMessageLocator { get; } = "//div[@class = 'T-I J-J5-Ji T-I-KE L3']";
+            public string WriteMessageLocator { get; } = "//div[contains(text(), 'Написать')]";
         }
 
         /// <summary>
