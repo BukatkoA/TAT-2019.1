@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -7,126 +8,192 @@ namespace Dev2
     /// <summary>
     /// A class that converts words into phonemes.
     /// </summary>
-    class ConverterToPhonemes
+    public class ConverterToPhonemes
     {
-        private StringBuilder workingString;
+        public string Word { get; private set; }
+        public int Stress { get; private set; }
+        public List<Letter> ListOfLetters { get; private set; }
+        public StringBuilder Phonemes { get; private set; }
+        private readonly Dictionary<char, char> keysIsRingingValueIsDeaf = new Dictionary<char, char>
+        {
+            ['б'] = 'п',
+            ['в'] = 'ф',
+            ['г'] = 'к',
+            ['д'] = 'т',
+            ['ж'] = 'ш',
+            ['з'] = 'с'
+        };
+        private readonly Dictionary<char, char> keysIsCompoundVowel = new Dictionary<char, char>
+        {
+            ['ю'] = 'у',
+            ['я'] = 'а',
+            ['ё'] = 'о',
+            ['е'] = 'э'
+        };
 
         /// <summary>
-        /// Call the methods to validate the entered data. Reduce string to lowercase.
+        /// Constructor for ConverToPhonemes.
         /// </summary>
-        /// <param name="input"></param>
-        public ConverterToPhonemes(string[] input)
+        public ConverterToPhonemes()
         {
-            ValidationCheck validation = new ValidationCheck(input);
-            validation.CheckValidation();
-            validation.CheckStress();
-
-            workingString = new StringBuilder();
-            foreach (string word in input)
-            {
-                workingString.Append(word.ToLower()).Append(" ");
-            }
-            workingString.Remove(workingString.Length - 1, 1);
+            this.ListOfLetters = new List<Letter>();
+            this.Phonemes = new StringBuilder();
         }
 
-        private readonly string Consonants = "бвгджзйлмнрпфктшсхцчщ";
-
-        private readonly Dictionary<string, string> vowelAfterConsonant = new Dictionary<string, string>
+        /// <summary>
+        /// A method converts word to phonemes and return.
+        /// </summary>
+        /// <returns>Phonemes</returns>
+        public StringBuilder ConvertWordToPhonemes(string word)
         {
-            ["ю"] = "у",
-            ["я"] = "а",
-            ["е"] = "э",
-            ["ё"] = "о",
-        };
+            this.SetWord(word);
+            this.ListOfLetters.Clear();
+            this.Phonemes.Clear();
+            this.DevideWordIntoLetters();
 
-        private readonly Dictionary<string, string> ringingAndDeafConverter = new Dictionary<string, string>
-        {
-            ["б"] = "п",
-            ["в"] = "ф",
-            ["г"] = "к",
-            ["д"] = "т",
-            ["ж"] = "ш",
-            ["з"] = "с"
-        };
+            foreach (var letter in this.ListOfLetters)
+            {
+                switch (letter.DefineTypeOfSymbol(letter.Current))
+                {
+                    case "vowel":
+                        this.AddVowelToPhonemes(letter);
+                        continue;
+                    case "consonant":
+                        this.AddConsonantToPhonemes(letter);
+                        continue;
+                    case "other":
+                        this.Phonemes.Append(letter.Current == 'ь' ? "'" : "");
+                        continue;
+                }
+            }
+
+            return this.Phonemes;
+        }
 
         /// <summary>
-        /// Main operating method. Here the word is replaced by transcription.
+        /// Method sets parameter to this word and sets stress.
         /// </summary>
-        /// <returns>Returns the processed string</returns>
-        public StringBuilder Transcription()
+        /// <param name="word">Word</param>
+        public void SetWord(string word)
         {
+            word = word != null ? word.ToLower() : throw new NullReferenceException();
+            int indexStress = 0;
 
-            for (int i = 0; i < workingString.Length - 1; i++)
+            foreach (var i in word)
             {
-                if (workingString[i] == 'о' && workingString[i + 1] != '+')
+                // If strecc of word more than 1 -> exception.
+                if (((i >= 1072 && i <= 1103) || i == 'ё' || i == '+') && indexStress <= 1)
                 {
-                    workingString.Replace('о', 'а', i, 1);
+                    indexStress += i == '+' ? 1 : 0;
                 }
-            }
-            workingString.Replace('о', 'а', workingString.Length - 1, 1);
-            workingString.Replace("+", string.Empty);
-            workingString.Replace('ь', '\'');
-
-            foreach (KeyValuePair<string, string> keyValue in vowelAfterConsonant)
-            {
-                workingString.Replace(keyValue.Key, $"й{keyValue.Value}", 0, 1);
-                for (int i = 1; i < workingString.Length; i++)
+                else
                 {
-                    if (Consonants.Contains(workingString[i - 1]))
-                    {
-                        workingString.Replace(keyValue.Key, $"'{keyValue.Value}", i, 1);
-                    }
-                    else
-                    {
-                        workingString.Replace(keyValue.Key, $"й{keyValue.Value}", i, 1);
-                    }
+                    throw new ArgumentOutOfRangeException("letter", "Incorrected letter.");
                 }
             }
 
-            workingString.Replace("ъ", string.Empty);
+            this.Stress = indexStress == 1 ? word.IndexOf('+') - 1 : -1;
+            this.Word = indexStress == 1 ? word.Remove(word.IndexOf('+'), 1) : word;
+        }
 
-            foreach (KeyValuePair<string, string> keyValue in ringingAndDeafConverter)
+        /// <summary>
+        /// This method adds objects to listOfLetters.
+        /// </summary>
+        public void DevideWordIntoLetters()
+        {
+            for (var index = 0; index < this.Word.Length; index++)
             {
-                workingString.Replace($"{keyValue.Key} ", $"{keyValue.Value} ");
-                workingString.Replace($"{keyValue.Key}' ", $"{keyValue.Value}' ");
-                workingString.Replace(keyValue.Key, keyValue.Value, workingString.Length - 1, 1);
-                workingString.Replace($"{keyValue.Key}'", $"{keyValue.Value}'", workingString.Length - 2, 2);
-
-                if (ringingAndDeafConverter.ContainsValue(workingString[1].ToString()))
+                this.ListOfLetters.Add(new Letter
                 {
-                    workingString.Replace(keyValue.Key, keyValue.Value, 0, 1);
-                }
-                if (ringingAndDeafConverter.ContainsValue(workingString[2].ToString()))
-                {
-                    workingString.Replace($"{keyValue.Key}'", $"{keyValue.Value}'", 0, 2);
-                }
-                if (ringingAndDeafConverter.ContainsKey(workingString[1].ToString()))
-                {
-                    workingString.Replace(keyValue.Value, keyValue.Key, 0, 1);
-                }
-                if (ringingAndDeafConverter.ContainsKey(workingString[2].ToString()))
-                {
-                    workingString.Replace($"{keyValue.Value}'", $"{keyValue.Key}'", 0, 2);
-                }
-
-                for (int i = 1; i < workingString.Length - 1; i++)
-                {
-                    if (ringingAndDeafConverter.ContainsValue(workingString[i + 1].ToString()))
-                    {
-                        workingString.Replace(keyValue.Key, keyValue.Value, i, 1);
-                        workingString.Replace($"{keyValue.Key}'", $"{keyValue.Value}'", i - 1, 2);
-                    }
-                }
-                for (int i = 1; i < workingString.Length - 1; i++)
-                {
-                    if (ringingAndDeafConverter.ContainsKey(workingString[i + 1].ToString()))
-                    {
-                        workingString.Replace(keyValue.Value, keyValue.Key, i, 1);
-                        workingString.Replace($"{keyValue.Value}'", $"{keyValue.Key}'", i - 1, 2);
-                    }
-                }
+                    Current = this.Word[index],
+                    Previous = index != 0 ? this.Word[index - 1] : '\0',
+                    Next = index < this.Word.Length - 2 ? this.Word[index + 1] : '\0',
+                    Index = index
+                });
             }
-            return workingString;
+        }
+
+        /// <summary>
+        /// A method adds vowel to phonemes.
+        /// </summary>
+        /// <param name="letter">Letter</param>
+        public void AddVowelToPhonemes(Letter letter)
+        {
+            if (letter == null)
+            {
+                throw new NullReferenceException("letter is null.");
+            }
+
+            // If the key is in compound vowel - true.
+            if (this.keysIsCompoundVowel.ContainsKey(letter.Current))
+            {
+                // If previous letter is consonant - true(е->'е).
+                // Add letter to phonemes.
+                this.Phonemes.Append(
+                    letter.DefineTypeOfSymbol(letter.Previous) == "consonant"
+                    ? $"'{this.keysIsCompoundVowel[letter.Current]}"
+                    : $"й{this.keysIsCompoundVowel[letter.Current]}");
+            }
+            else
+            {
+                this.AddOtherLetterToPhonemes(letter);
+            }
+        }
+
+        /// <summary>
+        /// A method adds consonant to phonemes.
+        /// </summary>
+        /// <param name="letter">Letter</param>
+        public void AddConsonantToPhonemes(Letter letter)
+        {
+            if (letter == null)
+            {
+                throw new NullReferenceException("Letter is null.");
+            }
+
+            // Check on deaf. If first symbol is ringing, next symbol is deaf or consonant last and ringing, 
+            // change the ringing to the deaf.
+            if ((this.keysIsRingingValueIsDeaf.ContainsKey(letter.Current) && this.keysIsRingingValueIsDeaf.ContainsValue(letter.Next)) || (letter.Next == '\0' && this.keysIsRingingValueIsDeaf.ContainsKey(letter.Current)))
+            {
+                // Add deaf to phenemes. Get the value from the key.
+                this.Phonemes.Append(this.keysIsRingingValueIsDeaf[letter.Current]);
+
+                return;
+            }
+            // Check on ringing. If first symbol is deaf, next symbol is ringing
+            // change the deaf to the ringing.
+            else if (this.keysIsRingingValueIsDeaf.ContainsValue(letter.Current) && this.keysIsRingingValueIsDeaf.ContainsKey(letter.Next) && letter.Next != 'в')
+            {
+                // Add ringing to phenemes. Get the key from the value;
+                this.Phonemes.Append(this.keysIsRingingValueIsDeaf.FirstOrDefault(x => x.Value == letter.Current).Key);
+
+                return;
+            }
+            this.AddOtherLetterToPhonemes(letter);
+        }
+
+        /// <summary>
+        /// A method defines the stress vawel or not and adds vawel in phonemes.
+        /// </summary>
+        /// <param name="letter">Symbol object</param>
+        public void AddOtherLetterToPhonemes(Letter letter)
+        {
+            if (letter == null)
+            {
+                throw new NullReferenceException("Letter is null");
+            }
+
+            if ((letter.Current >= 1072 && letter.Current <= 1103) || letter.Current == 'ё')
+            {
+                this.Phonemes.Append(
+                (letter.Current == 'о' && letter.Index != this.Stress)
+                    ? 'а'
+                    : letter.Current);
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("The letter is not russian letter.");
+            }
         }
     }
 }

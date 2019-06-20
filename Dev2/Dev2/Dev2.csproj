@@ -46,7 +46,7 @@
     <Compile Include="ConverterToPhonemes.cs" />
     <Compile Include="EntryPoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ValidationCheck.cs" />
+    <Compile Include="Letter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
