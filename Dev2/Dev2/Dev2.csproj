@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3C0785B4-3C61-4B6B-9FD8-0FFEFD165BDA}</ProjectGuid>
+    <ProjectGuid>{D57D266A-F7A2-405A-B953-8540BB332780}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Dev6</RootNamespace>
-    <AssemblyName>Dev6</AssemblyName>
+    <RootNamespace>Dev2</RootNamespace>
+    <AssemblyName>Dev2</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,29 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandCountAllVehicles.cs" />
-    <Compile Include="CommandCountAveragePrice.cs" />
-    <Compile Include="CommandCountAveragePriceOfBrand.cs" />
-    <Compile Include="CommandCountBrands.cs" />
-    <Compile Include="CommandsInvoker.cs" />
-    <Compile Include="CounterAllVehicles.cs" />
-    <Compile Include="CounterAveragePrice.cs" />
-    <Compile Include="CounterAveragePriceOfBrand.cs" />
-    <Compile Include="CounterBrands.cs" />
-    <Compile Include="DatabaseCars.cs" />
-    <Compile Include="DatabaseTrucks.cs" />
+    <Compile Include="ConverterToPhonemes.cs" />
     <Compile Include="EntryPoint.cs" />
-    <Compile Include="ICommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VehicleInfoStruct.cs" />
-    <Compile Include="XmlParser.cs" />
+    <Compile Include="Letter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="cars.xml" />
-    <Content Include="trucks.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

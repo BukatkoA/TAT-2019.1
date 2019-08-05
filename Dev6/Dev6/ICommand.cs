@@ -1,13 +1,13 @@
 ﻿namespace Dev6
 {
     /// <summary>
-    /// Interface for commands
+    /// The Command interface.
     /// </summary>
-    interface ICommand
+    public interface ICommand
     {
         /// <summary>
-        /// Calls the mtethod
+        /// Executes the command.
         /// </summary>
-        void Execute();
+        double Execute();
     }
 }

@@ -1,40 +1,38 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Xml.Linq;
 
 namespace Dev6
 {
     /// <summary>
-    /// Contains entry point to the program
+    /// Get information about cars by parsing XML document.
     /// </summary>
     class EntryPoint
     {
         /// <summary>
-        /// Entry point to the program
-        /// Creates getter for cars and trucks
-        /// Creates command factory with list of car catalogs
+        /// The entry point.
         /// </summary>
-        static void Main(string[] args)
+        /// <param name="args">
+        /// Names of the XML documents to parse.
+        /// </param>
+        private static void Main(string[] args)
         {
             try
             {
-                // Check for 2 entered file names
-                if (args.Length != 2)
+                if (args.Length < 2)
                 {
-                    throw new Exception("Error. Enter file names.");
+                    throw new ArgumentOutOfRangeException();
                 }
 
-                CarGetter carGetter = CarGetter.GetInstance();
-
-                List<CarCollection> catalogs = new List<CarCollection>()
-                {
-                    new CarCollection(carGetter.GetCars(args[(int)CarTypes.Car])),
-                    new CarCollection(carGetter.GetCars(args[(int)CarTypes.Truck]))
-                };
-
-                CommandFactory commandFactory = new CommandFactory(catalogs);
-                commandFactory.GetCommand();
+                var xDocCars = XDocument.Load($"../../{args[0]}");
+                var xDocTruck = XDocument.Load($"../../{args[1]}");
+                var invoker = new CommandsInvoker(xDocCars, xDocTruck);
+                invoker.InvokeCommands();
             }
-            catch(Exception ex)
+            catch (ArgumentOutOfRangeException)
+            {
+                Console.WriteLine("2 arguments are required: XML doc name with cars info and XML doc name with trucks info");
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex.Message}");
             }
