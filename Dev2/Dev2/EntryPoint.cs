@@ -3,14 +3,12 @@
 namespace Dev2
 {
     /// <summary>
-    /// Contains entry point to the program.
+    /// Calls all program methods and displays the result.
     /// </summary>
     class EntryPoint
     {
         /// <summary>
-        /// The entry point to the program.
-        /// Calls conversion of method and
-        /// Display the result.
+        /// The entry point to the program
         /// </summary>
         /// <param name="args">The command line arguments</param>
         static void Main(string[] args)
@@ -19,27 +17,22 @@ namespace Dev2
             {
                 if (args.Length == 0)
                 {
-                    throw new Exception("The string contains no arguments.");
+                    throw new Exception("Error. Please enter argument.");
                 }
-
-                var converterWordToPhonemes = new ConverterToPhonemes();
-
-                for (int i = 0; i < args.Length; i++)
-                {
-                    Console.WriteLine(args[i] + " -> " + converterWordToPhonemes.ConvertWordToPhonemes(args[i]));
-                }
+                ConverterToPhonemes converterToPhonemes = new ConverterToPhonemes(args[0]);
+                Console.WriteLine(converterToPhonemes.ConvertToPhenomes());
             }
             catch (ArgumentOutOfRangeException ex)
             {
-                Console.WriteLine($"Error: {ex.Message}.");
+                Console.WriteLine($"An exception: {ex.Message}.");
             }
             catch (NullReferenceException ex)
             {
-                Console.WriteLine($"Error: {ex.Message}.");
+                Console.WriteLine($"An exception: {ex.Message}.");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
+                Console.WriteLine($"An exception: {ex.Message}");
             }
         }
     }
