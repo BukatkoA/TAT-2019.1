@@ -1,30 +1,38 @@
 ﻿using System;
+using System.Xml.Linq;
 
 namespace Dev6
 {
     /// <summary>
-    /// Contains entry point to the program
+    /// Get information about cars by parsing XML document.
     /// </summary>
     class EntryPoint
     {
         /// <summary>
-        /// Entry point to the program
-        /// Creates information about cars and command factory
+        /// The entry point.
         /// </summary>
-        static void Main(string[] args)
+        /// <param name="args">
+        /// Names of the XML documents to parse.
+        /// </param>
+        private static void Main(string[] args)
         {
             try
             {
-                if (args.Length == 0)
+                if (args.Length < 2)
                 {
-                    throw new Exception("Error. Enter file name.");
+                    throw new ArgumentOutOfRangeException();
                 }
 
-                CarGetter carGetter = new CarGetter(args[0]);
-                CommandFactory commandFactory = new CommandFactory(new CarCollection(carGetter.GetCars()));
-                commandFactory.GetCommand();
+                var xDocCars = XDocument.Load($"../../{args[0]}");
+                var xDocTruck = XDocument.Load($"../../{args[1]}");
+                var invoker = new CommandsInvoker(xDocCars, xDocTruck);
+                invoker.InvokeCommands();
             }
-            catch(Exception ex)
+            catch (ArgumentOutOfRangeException)
+            {
+                Console.WriteLine("2 arguments are required: XML doc name with cars info and XML doc name with trucks info");
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex.Message}");
             }

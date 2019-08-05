@@ -43,23 +43,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CarCollection.cs" />
-    <Compile Include="CarGetter.cs" />
-    <Compile Include="CommandFactory.cs" />
-    <Compile Include="AveragePriceCommand.cs" />
-    <Compile Include="AveragePriceTypesCommand.cs" />
-    <Compile Include="Car.cs" />
-    <Compile Include="CountAllCarsCommand.cs" />
-    <Compile Include="CountTypesCarsCommand.cs" />
+    <Compile Include="CommandCountAllVehicles.cs" />
+    <Compile Include="CommandCountAveragePrice.cs" />
+    <Compile Include="CommandCountAveragePriceOfBrand.cs" />
+    <Compile Include="CommandCountBrands.cs" />
+    <Compile Include="CommandsInvoker.cs" />
+    <Compile Include="CounterAllVehicles.cs" />
+    <Compile Include="CounterAveragePrice.cs" />
+    <Compile Include="CounterAveragePriceOfBrand.cs" />
+    <Compile Include="CounterBrands.cs" />
+    <Compile Include="DatabaseCars.cs" />
+    <Compile Include="DatabaseTrucks.cs" />
     <Compile Include="EntryPoint.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VehicleInfoStruct.cs" />
+    <Compile Include="XmlParser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Cars.xml" />
+    <Content Include="cars.xml" />
+    <Content Include="trucks.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
