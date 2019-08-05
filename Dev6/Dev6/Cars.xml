@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cars>
+  <car name="Aston Martin Rapide">
+    <brand>Aston Martin</brand>
+    <model>Rapide</model>
+    <count>200</count>
+    <price>65000</price>
+  </car>
+  <car name="Nissan Juke">
+    <brand>Nissan</brand>
+    <model>Juke</model>
+    <count>5000</count>
+    <price>25000</price>
+  </car>
+  <car name="Nissan GT-R">
+    <brand>Nissan</brand>
+    <model>GT-R</model>
+    <count>1000</count>
+    <price>175000</price>
+  </car>
+  <car name="Nissan Rogue">
+    <brand>Nissan</brand>
+    <model>Rogue</model>
+    <count>33000</count>
+    <price>25000</price>
+  </car>
+  <car name="Nissan Qashqai">
+    <brand>Nissan</brand>
+    <model>Qashqai</model>
+    <count>33000</count>
+    <price>25000</price>
+  </car>
+  <car name="Volkswagen Passat">
+    <brand>Volkswagen</brand>
+    <model>Passat</model>
+    <count>20000</count>
+    <price>40000</price>
+  </car>
+  <car name="Volkswagen Jetta">
+    <brand>Volkswagen</brand>
+    <model>Jetta</model>
+    <count>30000</count>
+    <price>19000</price>
+  </car>
+  <car name="Volkswagen Tiguan">
+    <brand>Volkswagen</brand>
+    <model>Tiguan</model>
+    <count>28000</count>
+    <price>25000</price>
+  </car>
+  <car name="Tesla Model S">
+    <brand>Tesla</brand>
+    <model>S</model>
+    <count>20000</count>
+    <price>75000</price>
+  </car>
+  <car name="Tesla Model X">
+    <brand>Tesla</brand>
+    <model>X</model>
+    <count>30000</count>
+    <price>125000</price>
+  </car>
+</cars>
