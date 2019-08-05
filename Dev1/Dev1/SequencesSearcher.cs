@@ -1,56 +1,64 @@
 ﻿using System;
-using System.Text;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Dev1
 {
-    class Finder
+    /// <summary>
+    /// Finds and prints subsequences of non-repeating symbols.
+    /// </summary>
+    public class SequencesSearcher
     {
-        private StringBuilder workingString;
+        private StringBuilder WorkingString { get; }
 
         /// <summary>
         /// SequenceCheck constructor checks for the correctness of the entered string.
         /// </summary>
         /// <param name="inputString">Array of strings</param>
-        public Finder(string[] inputString)
+        public SequencesSearcher(string[] inputString)
         {
-            workingString = new StringBuilder();
+            this.WorkingString = new StringBuilder();
 
             foreach (string word in inputString)
             {
-                workingString.Append(word);
+                this.WorkingString.Append(word);
             }
 
-            if (workingString.Length < 2)
+            if (this.WorkingString.Length < 2)
             {
                 throw new FormatException();
             }
         }
 
         /// <summary>
-        /// Compare the next symbol with the previous one and write 
-        /// to the console if they are different.
+        /// Compare the next symbol with the previous one.
         /// </summary>
-        public List<string> CheckSequence()
+        /// <returns>Processed sequence</returns>
+        public List<string> FindSequences()
         {
             StringBuilder sequence;
-            List<string> sequences = new List<string>();
+            var sequences = new List<string>();
+            sequence = new StringBuilder();
 
-            for (int i = 0; i < workingString.Length - 1; i++)
+            for (int i = 0; i < this.WorkingString.Length - 1; i++)
             {
-                sequence = new StringBuilder();
-                sequence.Append(workingString[i]);
+                sequence.Clear();
+                sequence.Append(this.WorkingString[i]);
 
-                for (int j = i + 1; j < workingString.Length; j++)
+                for (int j = i + 1; j < this.WorkingString.Length; j++)
                 {
-                    if (workingString[j - 1] != workingString[j])
+                    if (this.WorkingString[j - 1] != this.WorkingString[j])
                     {
-                        sequence.Append(workingString[j]);
+                        sequence.Append(this.WorkingString[j]);
                         sequences.Add(sequence.ToString());
                     }
-                    else break;
+                    else
+                    {
+                        break;
+                    }
                 }
             }
+
             return sequences;
         }
 
@@ -62,7 +70,7 @@ namespace Dev1
         {
             if (sequences.Count == 0)
             {
-                throw new FormatException();
+                Console.WriteLine("Nothing found");
             }
             else
             {

@@ -4,33 +4,34 @@ namespace Dev1
 {
     /// <summary>
     /// Class EntryPoint which realized SearchMethod.
-    /// <param name="args">Arguments from command line</param>
+    /// Finds sequences in string without repetitive in a row elements.
     /// </summary>
     class EntryPoint
     {
+        /// <summary>
+        /// Entry point.
+        /// Checks input string and calls checker's methods.
+        /// </summary>
+        /// <param name="args">The command line arguments</param>
         static void Main(string[] args)
         {
             try
             {
-                if (args.Length == 0)
+                if (args.Length < 2 && args[0].Length < 2)
                 {
-                    throw new Exception("Please enter a argument.");
-                }
-                else if (args[0].Length < 2)
-                {
-                    throw new Exception("Please enter more than two symbols.");
+                    throw new FormatException();
                 }
                 else
                 {
-                    Finder sequencesFinder = new Finder(args);
-                    sequencesFinder.DisplaySequence(sequencesFinder.CheckSequence());
+                    var sequencesFinder = new SequencesSearcher(args);
+                    sequencesFinder.DisplaySequence(sequencesFinder.FindSequences());
                 }
             }
             catch (FormatException)
             {
-                Console.WriteLine("Error. Make sure to send a string with at least 2 characters.");
+                Console.WriteLine("Error. String contains less than 2 elements.");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine($"An exception: {ex.Message}");
             }
